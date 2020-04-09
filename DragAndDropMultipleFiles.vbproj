@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="utilities-terminal.ico" />
+    <Content Include="_Screenshot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
