@@ -113,6 +113,18 @@ Namespace My
                 Me("List") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property DisableX64FileRedirection() As Boolean
+            Get
+                Return CType(Me("DisableX64FileRedirection"),Boolean)
+            End Get
+            Set
+                Me("DisableX64FileRedirection") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

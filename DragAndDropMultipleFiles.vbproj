@@ -48,7 +48,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>utilities-terminal.ico</ApplicationIcon>
+    <ApplicationIcon>Kyo-Tux-Phuzion-File-Command.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -123,6 +123,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dakirby309-Simply-Styled-OS-Linux.ico" />
+    <Content Include="Kyo-Tux-Phuzion-File-Command.ico" />
     <Content Include="utilities-terminal.ico" />
     <Content Include="_Screenshot.png" />
   </ItemGroup>

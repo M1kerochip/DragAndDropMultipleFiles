@@ -32,15 +32,18 @@ Partial Class frmMain
         Me.btnClearList = New System.Windows.Forms.Button()
         Me.chkClearAfterExecute = New System.Windows.Forms.CheckBox()
         Me.ToolTipMain = New System.Windows.Forms.ToolTip(Me.components)
+        Me.chkDisableX64FileRedirection = New System.Windows.Forms.CheckBox()
+        Me.lblCMD = New System.Windows.Forms.Label()
+        Me.lblArgument = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'txtParams
         '
         Me.txtParams.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtParams.Location = New System.Drawing.Point(12, 447)
+        Me.txtParams.Location = New System.Drawing.Point(72, 456)
         Me.txtParams.Name = "txtParams"
-        Me.txtParams.Size = New System.Drawing.Size(402, 20)
+        Me.txtParams.Size = New System.Drawing.Size(349, 20)
         Me.txtParams.TabIndex = 1
         Me.txtParams.Text = "%FILENAME 0"
         '
@@ -48,9 +51,9 @@ Partial Class frmMain
         '
         Me.txtCmd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtCmd.Location = New System.Drawing.Point(12, 421)
+        Me.txtCmd.Location = New System.Drawing.Point(72, 430)
         Me.txtCmd.Name = "txtCmd"
-        Me.txtCmd.Size = New System.Drawing.Size(402, 20)
+        Me.txtCmd.Size = New System.Drawing.Size(349, 20)
         Me.txtCmd.TabIndex = 2
         Me.txtCmd.Text = "trunc.exe"
         '
@@ -58,9 +61,9 @@ Partial Class frmMain
         '
         Me.btnExecute.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnExecute.Location = New System.Drawing.Point(12, 473)
+        Me.btnExecute.Location = New System.Drawing.Point(12, 482)
         Me.btnExecute.Name = "btnExecute"
-        Me.btnExecute.Size = New System.Drawing.Size(402, 22)
+        Me.btnExecute.Size = New System.Drawing.Size(409, 22)
         Me.btnExecute.TabIndex = 3
         Me.btnExecute.Text = "&Execute"
         Me.btnExecute.UseVisualStyleBackColor = True
@@ -75,14 +78,14 @@ Partial Class frmMain
         Me.txtFileList.Multiline = True
         Me.txtFileList.Name = "txtFileList"
         Me.txtFileList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtFileList.Size = New System.Drawing.Size(402, 375)
+        Me.txtFileList.Size = New System.Drawing.Size(409, 370)
         Me.txtFileList.TabIndex = 4
         '
         'chkOverWriteOnDragDrop
         '
         Me.chkOverWriteOnDragDrop.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkOverWriteOnDragDrop.AutoSize = True
-        Me.chkOverWriteOnDragDrop.Location = New System.Drawing.Point(12, 397)
+        Me.chkOverWriteOnDragDrop.Location = New System.Drawing.Point(12, 406)
         Me.chkOverWriteOnDragDrop.Name = "chkOverWriteOnDragDrop"
         Me.chkOverWriteOnDragDrop.Size = New System.Drawing.Size(145, 17)
         Me.chkOverWriteOnDragDrop.TabIndex = 5
@@ -91,11 +94,10 @@ Partial Class frmMain
         '
         'btnClearList
         '
-        Me.btnClearList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnClearList.Location = New System.Drawing.Point(313, 393)
+        Me.btnClearList.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClearList.Location = New System.Drawing.Point(303, 388)
         Me.btnClearList.Name = "btnClearList"
-        Me.btnClearList.Size = New System.Drawing.Size(101, 22)
+        Me.btnClearList.Size = New System.Drawing.Size(118, 22)
         Me.btnClearList.TabIndex = 6
         Me.btnClearList.Text = "&Clear List"
         Me.btnClearList.UseVisualStyleBackColor = True
@@ -105,19 +107,53 @@ Partial Class frmMain
         Me.chkClearAfterExecute.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkClearAfterExecute.AutoSize = True
-        Me.chkClearAfterExecute.Location = New System.Drawing.Point(176, 398)
+        Me.chkClearAfterExecute.Location = New System.Drawing.Point(163, 406)
         Me.chkClearAfterExecute.Name = "chkClearAfterExecute"
         Me.chkClearAfterExecute.Size = New System.Drawing.Size(117, 17)
         Me.chkClearAfterExecute.TabIndex = 7
         Me.chkClearAfterExecute.Text = "Clear &After Execute"
         Me.chkClearAfterExecute.UseVisualStyleBackColor = True
         '
+        'chkDisableX64FileRedirection
+        '
+        Me.chkDisableX64FileRedirection.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.chkDisableX64FileRedirection.AutoSize = True
+        Me.chkDisableX64FileRedirection.Location = New System.Drawing.Point(12, 388)
+        Me.chkDisableX64FileRedirection.Name = "chkDisableX64FileRedirection"
+        Me.chkDisableX64FileRedirection.Size = New System.Drawing.Size(285, 17)
+        Me.chkDisableX64FileRedirection.TabIndex = 8
+        Me.chkDisableX64FileRedirection.Text = "Disable x&64 File redirection (System32 -> SYSWOW64)"
+        Me.chkDisableX64FileRedirection.UseVisualStyleBackColor = True
+        '
+        'lblCMD
+        '
+        Me.lblCMD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblCMD.AutoSize = True
+        Me.lblCMD.Location = New System.Drawing.Point(12, 433)
+        Me.lblCMD.Name = "lblCMD"
+        Me.lblCMD.Size = New System.Drawing.Size(54, 13)
+        Me.lblCMD.TabIndex = 9
+        Me.lblCMD.Text = "Command"
+        '
+        'lblArgument
+        '
+        Me.lblArgument.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblArgument.AutoSize = True
+        Me.lblArgument.Location = New System.Drawing.Point(12, 459)
+        Me.lblArgument.Name = "lblArgument"
+        Me.lblArgument.Size = New System.Drawing.Size(52, 13)
+        Me.lblArgument.TabIndex = 10
+        Me.lblArgument.Text = "Argument"
+        '
         'frmMain
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(426, 507)
+        Me.ClientSize = New System.Drawing.Size(433, 516)
+        Me.Controls.Add(Me.lblArgument)
+        Me.Controls.Add(Me.lblCMD)
+        Me.Controls.Add(Me.chkDisableX64FileRedirection)
         Me.Controls.Add(Me.chkClearAfterExecute)
         Me.Controls.Add(Me.btnClearList)
         Me.Controls.Add(Me.chkOverWriteOnDragDrop)
@@ -141,4 +177,7 @@ Partial Class frmMain
     Friend WithEvents btnClearList As Button
     Friend WithEvents chkClearAfterExecute As CheckBox
     Friend WithEvents ToolTipMain As ToolTip
+    Friend WithEvents chkDisableX64FileRedirection As CheckBox
+    Friend WithEvents lblCMD As Label
+    Friend WithEvents lblArgument As Label
 End Class
