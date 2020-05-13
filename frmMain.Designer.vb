@@ -149,6 +149,7 @@ Partial Class frmMain
         '
         'chkWaitForExit
         '
+        Me.chkWaitForExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkWaitForExit.AutoSize = True
         Me.chkWaitForExit.Location = New System.Drawing.Point(202, 386)
         Me.chkWaitForExit.Name = "chkWaitForExit"
@@ -159,6 +160,7 @@ Partial Class frmMain
         '
         'chkRunMinimized
         '
+        Me.chkRunMinimized.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkRunMinimized.AutoSize = True
         Me.chkRunMinimized.Location = New System.Drawing.Point(202, 409)
         Me.chkRunMinimized.Name = "chkRunMinimized"
