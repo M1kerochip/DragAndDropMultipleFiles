@@ -25,7 +25,14 @@ Public Class frmMain
         For Each s As String In txtFileList.Lines
             If System.IO.File.Exists(s) Then    'Check file exists (or has been created, if reading from GW)
                 If txtCmd.Text.Trim <> "" Then    'Check script exists
-                    System.Diagnostics.Process.Start(txtCmd.Text.Trim, txtParams.Text.Replace("%FILENAME", ControlChars.Quote + s + ControlChars.Quote))
+                    Dim xp As New Process
+                    If chkRunMinimized.Checked Then
+                        xp.StartInfo.WindowStyle = ProcessWindowStyle.Minimized
+                    End If
+                    xp.StartInfo.FileName = txtCmd.Text.Trim
+                    xp.StartInfo.Arguments = txtParams.Text.Replace("%FILENAME", ControlChars.Quote + s + ControlChars.Quote)
+                    xp.Start()
+                    If chkWaitForExit.Checked Then xp.WaitForExit()
                 End If
             End If
         Next
@@ -43,6 +50,8 @@ Public Class frmMain
         My.Settings.Param = txtParams.Text
         My.Settings.List = txtFileList.Text
         My.Settings.DisableX64FileRedirection = chkDisableX64FileRedirection.Checked
+        My.Settings.WaitForExit = chkWaitForExit.Checked
+        My.Settings.RunMinimized = chkRunMinimized.Checked
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -52,6 +61,8 @@ Public Class frmMain
         txtParams.Text = My.Settings.Param
         txtFileList.Text = My.Settings.List
         chkDisableX64FileRedirection.Checked = My.Settings.DisableX64FileRedirection
+        chkWaitForExit.Checked = My.Settings.WaitForExit
+        chkRunMinimized.Checked = My.Settings.RunMinimized
 
         ToolTipMain.SetToolTip(txtParams, "Place command line arguments here. %FILENAME is the variable for the files in the list above.")
         ToolTipMain.SetToolTip(txtCmd, "Command to execute. Command line may include spaces etc.")
@@ -61,5 +72,7 @@ Public Class frmMain
         ToolTipMain.SetToolTip(chkOverWriteOnDragDrop, "Clear the list as you drag and drop in new files. Only useful to batches. Usually leave unticked.")
         ToolTipMain.SetToolTip(txtFileList, "Drag and drop files here to process. Can also paste in a list of files eg from a text editor etc.")
         ToolTipMain.SetToolTip(chkDisableX64FileRedirection, "Disable Windows System32 to SysWOW64 redirection. (On x64 Windows)")
+        ToolTipMain.SetToolTip(chkRunMinimized, "Start the program in a minimized window, rather tha in front of this one.")
+        ToolTipMain.SetToolTip(chkWaitForExit, "If enabled, process each file in sequence. Otherwise run all comands at once.")
     End Sub
 End Class
