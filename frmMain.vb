@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 
+
 Public Class frmMain
     Public Declare Function Wow64DisableWow64FsRedirection Lib "kernel32" (ByRef oldvalue As Long) As Boolean
 
@@ -24,13 +25,21 @@ Public Class frmMain
 
         For Each s As String In txtFileList.Lines
             If System.IO.File.Exists(s) Then    'Check file exists (or has been created, if reading from GW)
+
+                Dim noext As String = ControlChars.Quote + System.IO.Path.GetDirectoryName(s) + "\" + System.IO.Path.GetFileNameWithoutExtension(s) + ControlChars.Quote
+                Dim hasext As String = ControlChars.Quote + s + ControlChars.Quote
                 If txtCmd.Text.Trim <> "" Then    'Check script exists
                     Dim xp As New Process
                     If chkRunMinimized.Checked Then
-                        xp.StartInfo.WindowStyle = ProcessWindowStyle.Minimized
+                        If chkRunMinimized.CheckState = CheckState.Indeterminate Then
+                            xp.StartInfo.UseShellExecute = False
+                            xp.StartInfo.CreateNoWindow = True
+                        Else
+                            xp.StartInfo.WindowStyle = ProcessWindowStyle.Minimized
+                        End If
                     End If
                     xp.StartInfo.FileName = txtCmd.Text.Trim
-                    xp.StartInfo.Arguments = txtParams.Text.Replace("%FILENAME", ControlChars.Quote + s + ControlChars.Quote)
+                    xp.StartInfo.Arguments = txtParams.Text.Replace("%FILENAME", hasext).Replace("%NOEXTFILENAME", noext)
                     xp.Start()
                     If chkWaitForExit.Checked Then xp.WaitForExit()
                 End If
@@ -55,6 +64,8 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.Text = "Execute Multiple Files v" + My.Application.Info.Version.ToString
+
         chkClearAfterExecute.Checked = My.Settings.CleafAfterExec
         chkOverWriteOnDragDrop.Checked = My.Settings.ClearAfterDrag
         txtCmd.Text = My.Settings.Exec
@@ -64,7 +75,7 @@ Public Class frmMain
         chkWaitForExit.Checked = My.Settings.WaitForExit
         chkRunMinimized.Checked = My.Settings.RunMinimized
 
-        ToolTipMain.SetToolTip(txtParams, "Place command line arguments here. %FILENAME is the variable for the files in the list above.")
+        ToolTipMain.SetToolTip(txtParams, "Place command line arguments here. %FILENAME is the variable for the files in the list above. %NOEXTFILENAME is the variable for the file with no extension")
         ToolTipMain.SetToolTip(txtCmd, "Command to execute. Command line may include spaces etc.")
         ToolTipMain.SetToolTip(btnClearList, "Clear the list now.")
         ToolTipMain.SetToolTip(btnExecute, "Execute the command in the command box.")

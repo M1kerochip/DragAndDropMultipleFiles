@@ -167,6 +167,7 @@ Partial Class frmMain
         Me.chkRunMinimized.Size = New System.Drawing.Size(95, 17)
         Me.chkRunMinimized.TabIndex = 14
         Me.chkRunMinimized.Text = "Run &Minimized"
+        Me.chkRunMinimized.ThreeState = True
         Me.chkRunMinimized.UseVisualStyleBackColor = True
         '
         'frmMain
