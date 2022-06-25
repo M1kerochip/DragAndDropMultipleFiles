@@ -114,6 +114,7 @@ Partial Class frmMain
         Me.chkClearAfterExecute.Size = New System.Drawing.Size(136, 17)
         Me.chkClearAfterExecute.TabIndex = 10
         Me.chkClearAfterExecute.Text = "Clear List &After Execute"
+        Me.chkClearAfterExecute.ThreeState = True
         Me.chkClearAfterExecute.UseVisualStyleBackColor = True
         '
         'chkDisableX64FileRedirection
